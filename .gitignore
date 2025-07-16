@@ -1,0 +1,41 @@
+## Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+
+## Build results
+bin/
+obj/
+
+## NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+## ASP.NET
+appsettings.*.json
+
+## Logs
+*.log
+
+## Publish folder
+publish/
+
+## Secrets
+secrets.json
+
+## Other common
+*.db
+*.sqlite
+*.pdb
+*.cache
+*.tmp
+.DS_Store
+Thumbs.db
