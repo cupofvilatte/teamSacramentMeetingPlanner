@@ -9,7 +9,7 @@ namespace sacramentMeetingPlanner.Data
 {
     public class sacramentMeetingPlannerContext : DbContext
     {
-        public sacramentMeetingPlannerContext (DbContextOptions<sacramentMeetingPlannerContext> options)
+        public sacramentMeetingPlannerContext(DbContextOptions<sacramentMeetingPlannerContext> options)
             : base(options)
         {
         }
