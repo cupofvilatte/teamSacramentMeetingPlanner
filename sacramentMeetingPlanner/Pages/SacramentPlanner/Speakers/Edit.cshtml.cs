@@ -36,7 +36,7 @@ namespace sacramentMeetingPlanner.Pages.SacramentPlanner.Speakers
                 return NotFound();
             }
             Speaker = speaker;
-           ViewData["MeetingId"] = new SelectList(_context.Meeting, "Id", "ClosingPrayer");
+           ViewData["MeetingId"] = new SelectList(_context.Meeting, "Id", "Date");
             return Page();
         }
 

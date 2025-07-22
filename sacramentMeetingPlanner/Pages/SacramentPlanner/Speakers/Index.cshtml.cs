@@ -19,11 +19,11 @@ namespace sacramentMeetingPlanner.Pages.SacramentPlanner.Speakers
             _context = context;
         }
 
-        public IList<Speaker> Speaker { get;set; } = default!;
+        public IList<Speaker> Speakers { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Speaker = await _context.Speakers
+            Speakers = await _context.Speakers
                 .Include(s => s.Meeting).ToListAsync();
         }
     }

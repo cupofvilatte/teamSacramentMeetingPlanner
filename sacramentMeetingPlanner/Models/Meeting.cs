@@ -4,6 +4,7 @@ namespace sacramentMeetingPlanner.Models
 {
     public class Meeting
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

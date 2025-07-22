@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace sacramentMeetingPlanner.Models
 {
     public class Speaker
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -21,6 +23,8 @@ namespace sacramentMeetingPlanner.Models
         // Foreign key
         [Required]
         public int MeetingId { get; set; }
-        public Meeting Meeting { get; set; }
+
+        [ForeignKey("MeetingId")]
+        public Meeting? Meeting { get; set; }
     }
 }
