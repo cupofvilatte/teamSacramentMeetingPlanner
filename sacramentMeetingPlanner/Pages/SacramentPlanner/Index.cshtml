@@ -32,7 +32,8 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Meeting) {
+        @foreach (var item in Model.Meeting)
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
@@ -52,16 +53,17 @@
                         @Html.DisplayFor(modelItem => speaker.FirstName)@:&nbsp;@Html.DisplayFor(modelItem => speaker.LastName)<br />
                     }
                 </td>
-            <td>
+                <td>
                     Opening: @Html.DisplayFor(modelItem => item.OpeningPrayer) <br />
-                Closing: @Html.DisplayFor(modelItem => item.ClosingPrayer)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                    Closing: @Html.DisplayFor(modelItem => item.ClosingPrayer)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="./Print" asp-route-id="@item.Id" target="_blank">Print</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -1,0 +1,94 @@
+﻿@page "{id:int}"
+@model sacramentMeetingPlanner.Pages.SacramentPlanner.PrintModel
+@{
+    Layout = null; // No header/footer layout
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sacrament Meeting Program</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 2em;
+            color: #000;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .section {
+            margin-top: 1.5em;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .print-button {
+            display: block;
+            margin: 0 auto 2em auto;
+            padding: 0.5em 1em;
+            font-size: 1rem;
+        }
+
+        @@media print {
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">Print Program</button>
+
+    <h1>Sacrament Meeting</h1>
+    <h2>@Model.Meeting.Date.ToString("D")</h2>
+
+    <div class="section">
+        <div><span class="label">Conducting:</span> @Model.Meeting.ConductingLeader</div>
+    </div>
+
+    <div class="section">
+        <div><span class="label">Opening Song:</span> @Model.Meeting.OpeningSong</div>
+        <div><span class="label">Opening Prayer:</span> @Model.Meeting.OpeningPrayer</div>
+    </div>
+
+    <div class="section">
+        <div>Ward and Stake Business</div>
+    </div>
+
+    <div class="section">
+        <div><span class="label">Sacrament Hymn:</span> @Model.Meeting.SacramentHymn</div>
+    </div>
+
+    <div class="section">
+        <div>Blessing and Passing of the Sacrament</div>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Meeting.IntermediateNumber))
+    {
+        <div class="section">
+            <div><span class="label">Intermediate Number:</span> @Model.Meeting.IntermediateNumber</div>
+        </div>
+    }
+
+    <div class="section">
+        <div><span class="label">Speakers:</span></div>
+        <ul>
+            @foreach (var speaker in Model.Meeting.Speakers)
+            {
+                <li>@speaker.FirstName @speaker.LastName — @speaker.Subject</li>
+            }
+        </ul>
+    </div>
+
+    <div class="section">
+        <div><span class="label">Closing Song:</span> @Model.Meeting.ClosingSong</div>
+        <div><span class="label">Closing Prayer:</span> @Model.Meeting.ClosingPrayer</div>
+    </div>
+</body>
+</html>
