@@ -1,41 +1,51 @@
 ﻿@page
 @model sacramentMeetingPlanner.Pages.SacramentPlanner.Speakers.CreateModel
 
-        @{
-        ViewData["Title"] = "Create";
-        }
-        
-        <h1>Create</h1>
-        
-    <h4>Speaker</h4>
-    <hr />
-    <div class="row">
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Speaker</h4>
+<hr />
+<div class="row">
     <div class="col-md-4">
-    <form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Speaker.FirstName" class="control-label"></label>
                 <input asp-for="Speaker.FirstName" class="form-control" />
                 <span asp-validation-for="Speaker.FirstName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Speaker.LastName" class="control-label"></label>
                 <input asp-for="Speaker.LastName" class="form-control" />
                 <span asp-validation-for="Speaker.LastName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Speaker.Subject" class="control-label"></label>
                 <input asp-for="Speaker.Subject" class="form-control" />
                 <span asp-validation-for="Speaker.Subject" class="text-danger"></span>
             </div>
+
+            @* Preserve MeetingId if passed via redirect *@
+            <input type="hidden" asp-for="Speaker.MeetingId" />
+
             <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Speaker.MeetingId" class="control-label"></label>
-                <select asp-for="Speaker.MeetingId" class ="form-control" asp-items="ViewBag.MeetingId"></select>
+                <label asp-for="Speaker.MeetingId" class="control-label">Link to Meeting</label>
+                <select asp-for="Speaker.MeetingId" class="form-control" asp-items="ViewBag.MeetingId">
+                    <option value="">-- None --</option>
+                </select>
+                <span asp-validation-for="Speaker.MeetingId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -48,5 +58,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

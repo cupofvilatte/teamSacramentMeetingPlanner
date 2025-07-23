@@ -38,7 +38,8 @@ namespace sacramentMeetingPlanner.Pages.SacramentPlanner
             _context.Meeting.Add(Meeting);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            // Redirect to Speaker creation page, passing the new Meeting ID
+            return RedirectToPage("/SacramentPlanner/Speakers/Create", new { meetingId = Meeting.Id });
         }
     }
 }

@@ -19,9 +19,20 @@ namespace sacramentMeetingPlanner.Pages.SacramentPlanner.Speakers
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? meetingId)
         {
-        ViewData["MeetingId"] = new SelectList(_context.Meeting, "Id", "Date");
+            Speaker = new Speaker();
+
+            if (meetingId != null && _context.Meeting.Any(m => m.Id == meetingId))
+            {
+                Speaker.MeetingId = meetingId.Value;
+                ViewData["MeetingId"] = new SelectList(_context.Meeting.Where(m => m.Id == meetingId), "Id", "Date");
+            }
+            else
+            {
+                ViewData["MeetingId"] = new SelectList(_context.Meeting, "Id", "Date");
+            }
+
             return Page();
         }
 
@@ -33,10 +44,9 @@ namespace sacramentMeetingPlanner.Pages.SacramentPlanner.Speakers
         {
             if (!ModelState.IsValid)
             {
-                return OnGet();
+                return Page();
             }
 
-            _context.Meeting.Where(m => m.Id == Speaker.MeetingId).Single().Speakers.Add(Speaker);
             _context.Speakers.Add(Speaker);
             await _context.SaveChangesAsync();
 
